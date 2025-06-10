@@ -167,7 +167,7 @@ def ensure_output_dir(output_dir):
 
 def sanitize_filename(filename):
     """Очищает строку для использования в имени файла"""
-    print(f'Filename {filename}')
+    # print(f'Filename {filename}')
     filename = unicodedata.normalize('NFKD', filename)
     filename = re.sub(r'[\\/*?:"<>|]', "", filename)
     filename = filename.replace('\n', ' ').replace('\r', ' ')
@@ -450,7 +450,7 @@ def save_message_as_txt(message, output_dir, msg_num):
 
         # Создаем базовое имя файла
         date_part = (received_time or sent_time or datetime.now(GMT3)).strftime('%Y%m%d_%H%M')
-        filename_base = f"{date_part}_{sanitize_filename(sender)}_{sanitize_filename(subject)}"
+        filename_base = f"{date_part}_{sanitize_filename(sender)}_{sanitize_filename(subject)}_{msg_num}"
 
         # Получаем тело письма
         body = get_message_body(message)
